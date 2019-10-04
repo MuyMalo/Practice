@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
 
+import Chatbox from './components/Chatbox/Chatbox.js';
+import Input from './components/Input/Input.js';
+
 function App() {
   return (
     <div className="App">
@@ -9,6 +12,9 @@ function App() {
           Learn React
         </a>
       </header>
+      
+      <Chatbox />
+      <Input />
     </div>
   );
 }
