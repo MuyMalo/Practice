@@ -5,6 +5,7 @@ Contact = require('../model/contactModel');
 exports.index = function (req, res) {
     Contact.get(function (err, contacts) {
         if (err) {
+            //.json parses requests with JSON
             res.json({
                 status: "error",
                 message: err,
@@ -21,6 +22,7 @@ exports.index = function (req, res) {
 //Handle create contact actions
 exports.new = function (req, res) {
     var contact = new Contact();
+    //.body from body-parser
     contact.name = req.body.name ? req.body.name : contact.name;
     contact.gender = req.body.gender;
     contact.email = req.body.email;
@@ -40,8 +42,10 @@ exports.new = function (req, res) {
 
 //Handle view contact info
 exports.view = function (req, res) {
+    //.params contains route parameters in path portion of URL
     Contact.findById(req.params.contact_id, function (err, contact) {
         if (err)
+        //.send is like .json but does less
             res.send(err);
         res.json({
             message: 'Contact details loading..',
